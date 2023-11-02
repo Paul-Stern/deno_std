@@ -546,5 +546,18 @@ Deno.test({
         },
       },
     );
+    await t.step(
+      {
+        name: "Header undefined",
+
+        fn() {
+          const columns = [{ header: undefined, prop: "value" }];
+          const data = [{ value: "foo" }, { value: "bar" }];
+          const output = `foo${CRLF}bar${CRLF}`;
+          const options = { headers: false, columns };
+          assertEquals(stringify(data, options), output);
+        },
+      },
+    );
   },
 });
